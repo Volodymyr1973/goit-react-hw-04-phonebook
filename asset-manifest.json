@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/css/main.7acaea2f.css",
-    "main.js": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/js/main.07d3183d.js",
+    "main.css": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/css/main.45fcdd93.css",
+    "main.js": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/js/main.0a3e905b.js",
     "index.html": "/Volodymyr1973/goit-react-hw-04-phonebook.git/index.html",
-    "main.7acaea2f.css.map": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/js/main.07d3183d.js.map"
+    "main.45fcdd93.css.map": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/css/main.45fcdd93.css.map",
+    "main.0a3e905b.js.map": "/Volodymyr1973/goit-react-hw-04-phonebook.git/static/js/main.0a3e905b.js.map"
   },
   "entrypoints": [
-    "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/css/main.45fcdd93.css",
+    "static/js/main.0a3e905b.js"
   ]
 }
