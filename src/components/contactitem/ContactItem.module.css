@@ -1,0 +1,18 @@
+.contact__item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.contact__name {
+  width: 150px;
+}
+
+.contact__button {
+  width: 100px;
+}
+
+.contact__button:hover {
+  color: white;
+  background-color: blue;
+}

@@ -1,0 +1,14 @@
+.filter__label {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter__input {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.filter__input:hover,
+.filter__input:focus {
+  border-color: blue;
+}
