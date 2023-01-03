@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 // import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { ContactForm } from './contactform/ContactForm';
@@ -7,76 +7,57 @@ import { ContactList } from './contactlist/ContactList';
 import { ContactItem } from './contactitem/ContactItem';
 import css from './App.module.css';
 
-export class App extends Component {
-  state = {
-    contacts: [
-      // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    filter: '',
-  };
+export const App = () => {
+  // state = {
+  //   contacts: [
+  //     // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  //     // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //     // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //     // { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  //   ],
+  //   filter: '',
+  // };
+  const [contacts, setContatcts] = useState(
+    () => JSON.parse(window.localStorage.getItem('contacts')) ?? []
+  );
+  const [filter, setFilter] = useState('');
 
-  // setTimeout оставил, чтобы проверить работает ли componentDidMount
-
-  componentDidMount() {
-    const contactsStorage = JSON.parse(localStorage.getItem('contacts'));
-    if (contactsStorage) {
-      setTimeout(() => {
-        this.setState({ contacts: contactsStorage });
-      }, 2000);
+  useEffect(() => {
+    if (contacts.length > 0) {
+      window.localStorage.setItem('contacts', JSON.stringify(contacts));
     }
-  }
+  }, [contacts]);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState !== this.state.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
-  changeFilter = event => {
-    this.setState({ filter: event.currentTarget.value });
+  const changeFilter = event => {
+    setFilter(event.currentTarget.value);
   };
 
-  addContact = contact => {
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+  const addContact = contact => {
+    setContatcts([contact, ...contacts]);
   };
 
-  deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
+  const deleteContact = contactId => {
+    setContatcts(contacts.filter(contact => contact.id !== contactId));
   };
 
-  render() {
-    return (
-      <div className={css.phonebook__wrapper}>
-        <ContactForm
-          contacts={this.state.contacts}
-          addContact={this.addContact}
-        />
+  return (
+    <div className={css.phonebook__wrapper}>
+      <ContactForm contacts={contacts} addContact={addContact} />
 
-        <div>
-          <h2>Contacts</h2>
-          <Filter
-            filter={this.state.filter}
-            onChangeFilter={this.changeFilter}
-          />
-          <ContactList
-            contacts={this.state.contacts}
-            filter={this.state.filter}
-            onDeleteContact={this.deleteContact}
-          >
-            <ContactItem />
-          </ContactList>
-        </div>
+      <div>
+        <h2>Contacts</h2>
+        <Filter filter={filter} onChangeFilter={changeFilter} />
+        <ContactList
+          contacts={contacts}
+          filter={filter}
+          onDeleteContact={deleteContact}
+        >
+          <ContactItem />
+        </ContactList>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 App.propTypes = {
   contacts: PropTypes.arrayOf(
